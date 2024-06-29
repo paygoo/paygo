@@ -1,10 +1,13 @@
 import { Link } from "expo-router";
 import React from "react";
-import { Text, View, ImageBackground } from "react-native";
+import { Text, View, ImageBackground, StyleSheet } from "react-native";
+import bg from "../assets/gradient.png";
+import AntDesign from "@expo/vector-icons/AntDesign";
 
 export default function Page() {
   return (
-    <View className="flex flex-1">
+    <View className="flex flex-1 h-screen overflow-hidden">
+      <ImageBackground source={bg} style={styles.image} />
       <Content />
     </View>
   );
@@ -12,8 +15,8 @@ export default function Page() {
 
 function Content() {
   return (
-    <View className="flex-1 justify-center">
-      <View className="lg:py-32">
+    <View className="flex-1 justify-center bg-background/60">
+      <View className="">
         <View className="px-4 md:px-6">
           <View className="flex flex-col items-center gap-4 text-center">
             <View className="flex flex-col items-center gap-2">
@@ -30,7 +33,7 @@ function Content() {
                 PayBase
               </Text>
             </View>
-            <Text className="mx-auto max-w-[30ch] text-lg text-center text-muted md:text-xl dark:text-gray-400">
+            <Text className="mx-auto max-w-[30ch] text-lg text-center text-muted brightness-125 md:text-xl">
               Your go to platform for all your payment needs, for Base.
             </Text>
 
@@ -38,9 +41,9 @@ function Content() {
               <Link
                 role="button"
                 href={"/dashboard"}
-                className="p-4 text-white bg-primary rounded-full px-6 py-4"
+                className="p-4 text-white bg-primary rounded-full px-6 py-4 inline-flex items-center"
               >
-                Get Started
+                Get Started <AntDesign name="right" size={12} />
               </Link>
             </View>
           </View>
@@ -49,3 +52,13 @@ function Content() {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  image: {
+    top: 40,
+    left: -180,
+    flex: 1,
+    position: "absolute",
+    resizeMode:'contain'
+  },
+});
