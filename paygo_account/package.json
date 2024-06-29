@@ -1,0 +1,16 @@
+{
+  "name": "paygo_account",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "alchemy-sdk": "^3.3.1",
+    "ethers": "^6.13.1",
+    "web3": "^4.10.0"
+  }
+}
