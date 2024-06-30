@@ -1,7 +1,7 @@
 import { Tabs } from "expo-router";
 import React from "react";
 import { TabBarIcon } from "@/components/navigation/TabBarIcon";
-import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import { FontAwesome } from "@expo/vector-icons";
 import DashboardHeader from "@/components/dashboard/commons/dashboard-header";
 
 export default function TabLayout() {
@@ -28,13 +28,13 @@ export default function TabLayout() {
           }}
         />
         <Tabs.Screen
-          name="send-recieve"
+          name="send"
           options={{
-            title: "Send/Recieve",
+            title: "Send",
             headerShown: false,
             tabBarIcon: ({ color, focused }) => (
-              <MaterialIcons
-                name="payments"
+              <FontAwesome
+                name={focused ? "send" : "send-o"}
                 size={28}
                 style={{ marginBottom: -4 }}
                 color={color}

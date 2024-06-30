@@ -76,14 +76,14 @@ function Transaction({ type, amount, date, otherAddress }: transactionData) {
 function TransactionBadge({ type }: { type: transactionData["type"] }) {
   const color = "#2157F7";
   const icons = {
-    deposit: <Feather size={20} name="upload" color={color} />,
+    deposit: <Feather size={20} name="download" color={color} />,
     send: <MaterialIcons size={20} name="call-made" color={color} />,
     recieve: <MaterialIcons size={20} name="call-received" color={color} />,
   };
 
   return (
     <View className="flex flex-row items-center uppercase font-mono text-xs gap-2">
-      {icons[type]} {type}
+      {icons[type]} <Text>{type}</Text>
     </View>
   );
 }

@@ -1,4 +1,5 @@
 import WalletBalance from "./wallet-balance";
+import Actions from "./actions";
 import { TransactionHistory, transactionData } from "./transaction-history";
 
-export { WalletBalance, TransactionHistory, transactionData };
+export { WalletBalance, Actions, TransactionHistory, transactionData };
