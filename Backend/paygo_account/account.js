@@ -7,7 +7,8 @@ const dotenv = require("dotenv");
 
 const web3 = new Web3(
   new Web3.providers.HttpProvider(
-    "https://mainnet.infura.io/v3/"+process.env.INFURA_API,
+    // process.env.API,
+    // Copy paste the line here from the .env file
   ),
 );
 
@@ -422,22 +423,24 @@ exports.getTokenBalance =  async (publicKey) => {
 // })();
 
 
-exports.transferTokens = async (fromAddress, toAddress, amount, privateKey) => {
+const transferTokens = async (fromAddress, toAddress, amount, privateKey) => {
   try {
     // Get token decimals
-    const decimals = await tokenContract.methods.decimals().call();
-    const amountInWei = web3.utils.toWei(amount.toString(), 'ether').slice(0, -decimals);
+    // const decimals = await tokenContract.methods.decimals().call();
+    const amountInWei = web3.utils.toWei(amount.toString(), 'ether');
 
     // Get transaction count for nonce
     const nonce = await web3.eth.getTransactionCount(fromAddress, 'latest');
 
     // Create transaction object
     const tx = {
-      from: fromAddress,
-      to: tokenAddress,
+      // from: fromAddress,
+      to: toAddress,
       nonce: nonce,
       gas: 2000000, // Adjust gas limit as needed
-      data: tokenContract.methods.transfer(toAddress, amountInWei).encodeABI()
+      gasPrice: await web3.eth.getGasPrice(),
+      value: amountInWei,
+      // data: tokenContract.methods.transfer(toAddress, amountInWei).encodeABI()
     };
 
     // Sign the transaction

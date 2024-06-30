@@ -3,7 +3,7 @@ const regController = require("../controllers/user-reg.js");
 
 const router = Router();
 
-router.get("/regster", regPage);
+// router.get("/regster", regPage);
 router.post("/home", regController);
 router.get("/getBalance", getBalance);
 

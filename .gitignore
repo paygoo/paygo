@@ -1,6 +1,8 @@
-/backend/.env
-/backend/node_modules/
-/backend/.tmp/node_modules/
+/Backend/.env
+/Backend/node_modules/
+/Backend/.tmp/
+Backend/paygo_account/node_modules
+node_modules/
 .expo/
 dist/
 npm-debug.*

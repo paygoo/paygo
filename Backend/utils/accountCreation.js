@@ -16,4 +16,4 @@ class ProjectAccount {
 		return this.publicKey;
 	}
 }
-export default ProjectAccount;
+module.exports = ProjectAccount;

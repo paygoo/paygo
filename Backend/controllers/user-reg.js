@@ -51,7 +51,8 @@ exports.getBalance = async (req, res, next) => {
 		const eoAddress = req.params.address;
 		res = getKeysfromEOA(eoAddress);
 		
-		const result = await getTokenBalance(res.publicKey);
+		// const result = await getTokenBalance(res.publicKey);
+		const result = await getTokenBalance(eoAddress);
 
 		res.status(200).json({
 			message: "Transaction fetched successfully",
