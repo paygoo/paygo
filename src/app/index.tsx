@@ -34,7 +34,7 @@ function Content() {
               </Text>
             </View>
             <Text className="mx-auto max-w-[30ch] text-lg text-center text-muted brightness-125 md:text-xl">
-              Your go to platform for all your payment needs, for Base.
+              Pay through Base, on the fly
             </Text>
 
             <View className="gap-4">
@@ -55,10 +55,9 @@ function Content() {
 
 const styles = StyleSheet.create({
   image: {
-    top: 40,
-    left: -180,
+    top: 20,
     flex: 1,
     position: "absolute",
-    resizeMode:'contain'
+    width: "100%",
   },
 });

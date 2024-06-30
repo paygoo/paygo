@@ -2,8 +2,8 @@ import { View, Text, StyleSheet } from "react-native";
 
 export default function Tab() {
   return (
-    <View className="flex bg-background flex-1">
-      <Text>Tab Home</Text>
+    <View style={styles.container}>
+      <Text>Tab My QR</Text>
     </View>
   );
 }
