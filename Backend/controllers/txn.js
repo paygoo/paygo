@@ -1,8 +1,9 @@
 const TransactionModel = require("../models/txn");
 const { transferTokens } = require("../paygo_account/account");
-const { getKeysfromEOA } = require("../models/user");
+const  UserModel = require("../models/user");
 exports.addTxn = async (req, res, next) => {
 	try {
+		const user = new UserModel();
 		const transactionData = req.body;
 		senderAddress = transactionData.senderAddress;
 		recieverAddress = transactionData.recieverAddress;
@@ -10,9 +11,9 @@ exports.addTxn = async (req, res, next) => {
 		recurrence = transactionData.recurrence;
 		amount = transactionData.amount;
 		currency = transactionData.currency;
-		keys = getKeysfromEOA(senderAddress);
+		keys = await user.getKeysfromEOA(senderAddress);
 		if (curType == "crypto_funding" && recurrence == "payment") {
-			result = transferTokens(keys.eoAddress, recieverAddress, amount, keys.privateKey);
+			result = transferTokens(keys.publicKey, recieverAddress, amount, keys.privateKey);
 		}
 		const transaction = new TransactionModel();
 		const result = await transaction.createTransaction(transactionData);

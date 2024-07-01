@@ -12,7 +12,7 @@ class UserModel {
 
 	async checkUserExists(publicKey) {
 		try {
-			const result = await YourModel.findOne({ publicKey: publicKey }).exec();
+			const result = await this.model.findOne({ eoAddress: publicKey }).exec();
 			return result;
 		} catch (error) {
 			console.error(error);
@@ -27,6 +27,7 @@ class UserModel {
 			// const publicKey = await projectAccount.getPublicKey();
 
 			const newUser = new this.model({
+				userID: new mongoose.Types.ObjectId(),
 				privateKey: privateKey,
 				publicKey: publicKey,
 				eoAddress: address,

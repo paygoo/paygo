@@ -1,6 +1,7 @@
 // const { ethers } = require("ethers");
 const { Web3 } = require("web3");
 const dotenv = require("dotenv");
+// const {} = require(".");
 // const { tokenAddress, tokenABI } = require("./utils");
 // import { Web3 } from 'web3';
 // import { tokenAddress, tokenABI } from './utils';
@@ -13,7 +14,7 @@ const web3 = new Web3(
 );
 
 
-exports.createWallet = () => {
+let createWallet = exports.createWallet = () => {
 //   const wallet = ethers.Wallet.createRandom();
 
 //   const privateKey = wallet.privateKey;
@@ -396,6 +397,7 @@ const tokenHolder = "0x075e72a5eDf65F0A5f44699c7654C1a76941Ddc8";
 // const contract = new web3.eth.Contract(tokenABI, tokenAddress);
 
 exports.getTokenBalance =  async (publicKey) => {
+  console.log("Get Token Balance  publicKey: ", publicKey)
     url = 'https://base-sepolia.blockscout.com/api/v2/addresses/'+publicKey;
     try {
     const response = await fetch(url);
@@ -423,7 +425,7 @@ exports.getTokenBalance =  async (publicKey) => {
 // })();
 
 
-const transferTokens = async (fromAddress, toAddress, amount, privateKey) => {
+exports.transferTokens = async (fromAddress, toAddress, amount, privateKey) => {
   try {
     // Get token decimals
     // const decimals = await tokenContract.methods.decimals().call();
@@ -455,7 +457,7 @@ const transferTokens = async (fromAddress, toAddress, amount, privateKey) => {
   }
 };
 
-exports.calculateAddressFromPublicKey = (publicKey) => {
+let calculateAddressFromPublicKey = exports.calculateAddressFromPublicKey = (publicKey) => {
   // Remove the '0x' prefix if present
   if (publicKey.startsWith('0x')) {
     publicKey = publicKey.slice(2);
