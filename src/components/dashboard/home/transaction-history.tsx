@@ -20,20 +20,20 @@ export function TransactionHistory() {
   const transactions: transactionData[] = [
     {
       type: "deposit",
-      amount: 100,
+      amount: 0.05,
       date: new Date(),
     },
     {
       type: "send",
-      amount: 50,
+      amount: 0.02,
       date: new Date(),
-      otherAddress: "0x1234567890abcdef1234567890abcdef12345678",
+      otherAddress: "0x8279716cb87Ef86CeFaAE354e4E53c75981ED1a2",
     },
     {
       type: "recieve",
-      amount: 75,
+      amount: 0.1,
       date: new Date(),
-      otherAddress: "0x1234567890abcdef1234567890abcdef12345678",
+      otherAddress: "0x8279716cb87Ef86CeFaAE354e4E53c75981ED1a2",
     },
   ];
 
@@ -54,7 +54,7 @@ function Transaction({ type, amount, date, otherAddress }: transactionData) {
     <View className="flex flex-col border border-muted rounded-md p-3">
       <View className="flex flex-row w-full items-center justify-between">
         <TransactionBadge type={type} />
-        <Text className="text-sm font-medium">${amount.toFixed(2)}</Text>
+        <Text className="text-sm font-medium">Eth {amount.toFixed(2)}</Text>
       </View>
       <View className="flex flex-row justify-between border border-muted/50 rounded-md p-2 mt-2">
         <Text className="text-xs text-muted brightness-75">

@@ -1,3 +1,7 @@
+/Backend/.env
+/Backend/node_modules/
+/Backend/.tmp/
+Backend/paygo_account/node_modules
 node_modules/
 .expo/
 dist/
@@ -9,6 +13,7 @@ npm-debug.*
 *.mobileprovision
 *.orig.*
 web-build/
+my-app/
 
 # macOS
 .DS_Store

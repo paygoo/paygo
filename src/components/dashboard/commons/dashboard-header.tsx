@@ -11,7 +11,7 @@ import * as Clipboard from 'expo-clipboard';
 
 export default function DashboardHeader() {
   const { top } = useSafeAreaInsets();
-  const address = "0x1234567890abcdef1234567890abcdef12345678"; // TODO: Replace it with actual current user context
+  const address = "0x9ec7D4215Fc2917B49A2Ae036c09Fdee14Dee796"; // TODO: Replace it with actual current user context
   const displayAddress = `${address.slice(0, 6)}...${address.slice(-4)}`;
 
   const copy = async () => {

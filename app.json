@@ -3,6 +3,14 @@
     "scheme": "acme",
     "userInterfaceStyle": "automatic",
     "orientation": "default",
+    "platforms": [
+      "android",
+      "web"
+    ],
+    "android": {
+      "package": "com.base.base-ui",
+      "versionCode": 1
+    },
     "web": {
       "output": "static",
       "bundler": "metro"

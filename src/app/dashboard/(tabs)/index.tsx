@@ -4,7 +4,7 @@ import { WalletBalance, TransactionHistory, Actions } from "@/components/dashboa
 export default function Tab() {
   return (
     <View className="flex flex-col space-y-4 p-3">
-      <WalletBalance balance={0} unit="USD" />
+      <WalletBalance balance={0.13} unit="Eth" />
       <Actions />
       <TransactionHistory />
     </View>
