@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const transactionSchema = require("../schema/transaction");
+const transactionSchema = require("../schema/transactions");
 const database = require("../utils/db");
 
 class TransactionModel {
