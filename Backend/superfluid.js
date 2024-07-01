@@ -3,7 +3,7 @@ import { ethers } from "ethers";
 const dotenv = require("dotenv");
 dotenv.config();
 
-async function createFlow(sender, privateKey_sender, receiver, rate) {
+exports.createFlow = async (sender, privateKey_sender, receiver, rate) =>{
   const provider = new ethers.providers.AlchemyProvider(
     "base-sepolia",
     process.env.ALCHEMY
@@ -14,10 +14,10 @@ async function createFlow(sender, privateKey_sender, receiver, rate) {
     provider,
   });
 
-  const daix = await sf.loadSuperToken("DAIx");
+  const ethx = await sf.loadSuperToken("ETHx");
 
   // Read example
-  const flowInfo = await daix.getFlow({
+  const flowInfo = await ethx.getFlow({
     sender: sender, // Replace with the sender's address
     receiver: receiver, // Replace with the receiver's address
     providerOrSigner: provider,
@@ -29,7 +29,7 @@ async function createFlow(sender, privateKey_sender, receiver, rate) {
     privateKey: privateKey_sender,
     provider,
   });
-  const createFlowOperation = daix.createFlow({
+  const createFlowOperation = ethx.createFlow({
     sender: sender, // Replace with the sender's address
     receiver: receiver, // Replace with the receiver's address
     flowRate: rate, // Replace with the desired flow rate
@@ -39,7 +39,7 @@ async function createFlow(sender, privateKey_sender, receiver, rate) {
   return txnReceipt;
 }
 
-async function convertToSuperToken(privateKey_sender, amount) {
+exports.convertToSuperToken = async (privateKey_sender, amount) => {
   const provider = new ethers.providers.AlchemyProvider(
     "base-sepolia",
     process.env.ALCHEMY
@@ -49,7 +49,7 @@ async function convertToSuperToken(privateKey_sender, amount) {
     chainId: 84532, // Replace with your chain ID
     provider,
   });
-  
+
   const ethx = await sf.loadSuperToken("ETHx");
 
   const signer = sf.createSigner({
@@ -64,9 +64,9 @@ async function convertToSuperToken(privateKey_sender, amount) {
   const txnResponse = await upgradeOperation.exec(signer);
   const txnReceipt = await txnResponse.wait();
   return txnReceipt;
-}
+};
 
-async function sendSuperToken(privateKey_sender, receiver, amount) {
+exports.sendSuperToken = async (privateKey_sender, receiver, amount) => {
   const provider = new ethers.providers.AlchemyProvider(
     "base-sepolia",
     process.env.ALCHEMY
@@ -94,7 +94,7 @@ async function sendSuperToken(privateKey_sender, receiver, amount) {
   return txnReceipt;
 }
 
-async function loadBalance(address) {
+exports.loadBalance = async (address) => {
   const provider = new ethers.providers.AlchemyProvider(
     "base-sepolia",
     process.env.ALCHEMY
@@ -110,7 +110,7 @@ async function loadBalance(address) {
   return balance;
 }
 
-async function loadFlow(sender, receiver) {
+exports.loadFlow = async (sender, receiver) => {
     const provider = new ethers.providers.AlchemyProvider(
         "base-sepolia",
         process.env.ALCHEMY
@@ -131,7 +131,7 @@ async function loadFlow(sender, receiver) {
     return flowInfo;
 }
 
-async function loadNetFlow(sender){
+exports.loadNetFlow = async (sender) => {
     const provider = new ethers.providers.AlchemyProvider(
         "base-sepolia",
         process.env.ALCHEMY

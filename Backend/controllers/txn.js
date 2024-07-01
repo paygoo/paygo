@@ -1,6 +1,7 @@
 const TransactionModel = require("../models/txn");
 const { transferTokens } = require("../paygo_account/account");
 const  UserModel = require("../models/user");
+const { sendSuperToken, createFlow } = require("../superfluid");
 exports.addTxn = async (req, res, next) => {
 	try {
 		const user = new UserModel();
@@ -13,7 +14,7 @@ exports.addTxn = async (req, res, next) => {
 		currency = transactionData.currency;
 		keys = await user.getKeysfromEOA(senderAddress);
 		if (curType == "crypto_funding" && recurrence == "payment") {
-			result = transferTokens(keys.publicKey, recieverAddress, amount, keys.privateKey);
+			result = await sendSuperToken(keys.privateKey, recieverAddress, amount);
 		}
 		const transaction = new TransactionModel();
 		const result = await transaction.createTransaction(transactionData);
@@ -28,6 +29,39 @@ exports.addTxn = async (req, res, next) => {
 			error: error,
 		});
 	}
+};
+
+exports.addFluidTxn = async (req, res, next) => {
+  try {
+    const user = new UserModel();
+    const transactionData = req.body;
+    senderAddress = transactionData.senderAddress;
+    recieverAddress = transactionData.recieverAddress;
+    curType = transactionData.curType;
+    recurrence = transactionData.recurrence;
+    rate = transactionData.rate;
+    currency = transactionData.currency;
+    keys = await user.getKeysfromEOA(senderAddress);
+    if (curType == "crypto_funding" && recurrence == "payment") {
+      result = await createFlow(
+        senderAddress, keys.privateKey,
+        recieverAddress,
+        rate
+      );
+    }
+    const transaction = new TransactionModel();
+    const result = await transaction.createTransaction(transactionData);
+    res.status(201).json({
+      message: "Transaction created successfully",
+      result: result,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      message: "Transaction creation failed",
+      error: error,
+    });
+  }
 };
 
 exports.getTxnsbyId = async (req, res, next) => {
